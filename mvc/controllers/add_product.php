@@ -1,9 +1,12 @@
 <?php
 	class add_product extends Controller{
-		function __construct(){
+		function show(){
 
-			$this->view("master_layout");
-			$this->view("page/product/add_product");
+			$this->view("master_layout",[
+				"page" => "product/add_product"
+			]);
+			// $this->view("page/add_product");
+
 		}
 	}
 

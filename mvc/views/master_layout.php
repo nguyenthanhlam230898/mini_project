@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mobile Shop - Administrator</title>
 
-<link href="./public/css/bootstrap.min.css" rel="stylesheet">
-<link href="./public/css/datepicker3.css" rel="stylesheet">
-<link href="./public/css/bootstrap-table.css" rel="stylesheet">
-<link href="./public/css/styles.css" rel="stylesheet">
+<link href="public/css/bootstrap.min.css" rel="stylesheet">
+<link href="public/css/datepicker3.css" rel="stylesheet">
+<link href="public/css/bootstrap-table.css" rel="stylesheet">
+<link href="public/css/styles.css" rel="stylesheet">
 
 <!--Icons-->
 <script src="./public/js/lumino.glyphs.js"></script>
@@ -44,9 +44,6 @@
 									
 				</div><!-- /.container-fluid -->
 			</nav>
-		
-
-
 
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<form role="search">
@@ -64,8 +61,10 @@
 
 	</div><!--/.sidebar-->
 		
-	
+	<?php
+		require_once "./mvc/views/page/".$data["page"].".php";
+	?>
 </body>
-<script src="./public/js/jquery-1.11.1.min.js"></script>
-<script src="./public/js/bootstrap.min.js"></script>	
+<script src="mini_project/public/js/jquery-1.11.1.min.js"></script>
+<script src="mini_project/public/js/bootstrap.min.js"></script>	
 </html>

@@ -2,16 +2,13 @@
 	/**
 	 * 
 	 */
-	class prd
+	class prd extends DB
 	{
 		// protected $conn = NULL;
-		function getData(){
+		public function getData(){
 			return "nguyen a";
 		}
-		function __construct()
-		{
-			 
-		}
+		
 	}
 
 ?>

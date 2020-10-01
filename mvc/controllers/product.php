@@ -4,18 +4,33 @@
 	 */
 	class product extends Controller
 	{
+		// public $prd;
+		// $prd = $this->model("product");
 		
-		function __construct()
-		{
-			$model_prd = $this->model("product");
-			$view_master = $this->view("master_layout",[]);
-			$name =  $model_prd->getData();
-			$this->view("page/product/product", [
-				"ten" => $name
-			]);
-
-			
+		function show()
+		{	
+			// $name =  $prd->getData();
+			$this->view("master_layout", [
+				"page" => "product"
+				// "name" => $name
+			]);	
 		}
+
+		// function add(){
+
+		// 	$this->view("master_layout",[
+		// 		"page" => "add_product"
+		// 	]);
+
+		// }
+
+		// function edit(){
+		// 	$this->view("master_layout",[
+		// 		"page" => "edit_product"
+		// 	]);
+
+		// }
+
 	}
 
 ?>

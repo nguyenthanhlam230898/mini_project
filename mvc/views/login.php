@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vietpro Mobile Shop - Administrator</title>
+<title>Mobile Shop - Administrator</title>
 
 <link href="./public/css/bootstrap.min.css" rel="stylesheet">
 <link href="./public/css/datepicker3.css" rel="stylesheet">

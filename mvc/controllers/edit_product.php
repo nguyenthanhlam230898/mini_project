@@ -4,9 +4,11 @@
 	 */
 	class edit_product extends Controller
 	{
-		function __construct(){
-			$this->view("master_layout");
-			$this->view("page/product/edit_product");
+		function show(){
+			$this->view("master_layout",[
+				"page" => "product/edit_product"
+			]);
+			// $this->view("page/product/edit_product");
 
 		}
 		

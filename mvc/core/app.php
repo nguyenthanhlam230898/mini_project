@@ -2,7 +2,7 @@
 class App{
 
     protected $controller="Home";
-    // protected $action="";
+    // protected $action="show";
     protected $params=[];
 
     function __construct(){
@@ -35,7 +35,7 @@ class App{
         //     unset($arr[1]);
         // }
 
-        // Params(if(!$arr)){$this->params = array_values($arr)}else{$arr = []}
+        // // Params(if(!$arr)){$this->params = array_values($arr)}else{$arr = []}
         // $this->params = $arr?array_values($arr):[];
 
         // call_user_func_array([$this->controller, $this->action], $this->params );

@@ -7,12 +7,11 @@
 		// 	$this->view("page/Dashboard" );
 		// }
 
-		function __construct()
+		function show()
 		{
-			$this->view("master_layout");
-			$this->view("page/Dashboard");
-			
-			
+			$this->view("master_layout",[
+				"page" => "Dashboard"
+			]);		
 		}
 	}
 ?>
