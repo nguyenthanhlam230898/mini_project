@@ -1,3 +1,4 @@
+
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">
@@ -16,7 +17,7 @@
     </div>
     <!--/.row-->
     <div id="toolbar" class="btn-group">
-        <a href="index.php?page_layout=add_product" class="btn btn-success">
+        <a href="./product/add" class="btn btn-success">
             <i class="glyphicon glyphicon-plus"></i> Thêm sản phẩm
         </a>
     </div>
@@ -32,26 +33,30 @@
                                 <th data-field="name" data-sortable="true">Tên sản phẩm</th>
                                 <th data-field="price" data-sortable="true">Giá</th>
                                 <th>Ảnh sản phẩm</th>
-                                <!-- <th>Trạng thái</th> -->
                                 <th>Danh mục</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            <?php
+                                foreach ($data["data_product"] as $row)
+                                {
+                            ?>
                             <tr>
-                                <td >1</td>
-                                <td >iphone</td>
-                                <td >10.000.000 vnd</td>
-                                <td style="text-align: center"><img width="130" height="180" src="./public/image/iPhone_10.png" /></td>
+                                <td ><?php echo $row["prd_id"]; ?></td>
+                                <td ><?php echo $row["prd_name"]; ?></td>
+                                <td ><?php echo $row["prd_price"]; ?></td>
+                                <td style="text-align: center"><img width="130" height="180" src="<?php if(isset($arr[2])){echo "../..";}else{echo ".";} ?>/public/image/<?php echo $row["prd_image"]; ?>" /></td>
                                 <!-- <td><span class="label label-success"></span></td> -->
-                                <td>Iphone 10</td>
+                                <td><?php echo $row['cat_name']; ?></td>
                                 <td class="form-group">
-                                    <a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    <a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                                    <a href="./product/edit/<?php echo $row["prd_id"]; ?>" class="btn btn-primary"><i style="margin-right: 10px;">Update</i></a>
+                                    <a onclick="return confirm('Bạn có chắn chắn xóa ?')" href="./product/delete/<?php echo $row["prd_id"]; ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove" style="margin-right: 10px;">Delete</i></a>
                                 </td>
                             </tr>
-                            
+                            <?php
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -72,8 +77,6 @@
     </div>
     <!--/.row-->
 </div>
-<!--/.main-->
-
-<script src="./public/js/jquery-1.11.1.min.js"></script>
-<script src="./public/js/bootstrap.min.js"></script>
-<script src="./public/js/bootstrap-table.js"></script>
+<script src="./public/js/jquery-1.11.1.min.js" /></script>
+<script src="./public/js/bootstrap.min.js" /></script>
+<script src="./public/js/bootstrap-table.js" /></script>
