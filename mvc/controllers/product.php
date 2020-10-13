@@ -4,6 +4,8 @@ class product extends Controller
 
 	private $table_prd = 'product';
 	private $table_cat = 'category';
+
+	//controller dùng để Show ra danh sách tất cả sản phẩm 
 	function show()
 	{	
 		error_reporting(0);
@@ -18,20 +20,19 @@ class product extends Controller
 
 	}
 
+	//controller sửa sản phẩm 
 	function edit($id){
-			// $table_prd = 'product';
-		
 		$cat = $this->model("MD_category");
 		$prd = $this->model("MD_product");
 		
-		
+		$data_image = $prd->getData($id);
 		if (isset($_POST['sbm'])) {
 			$prd_name = $_POST['prd_name'];
 			$prd_price = $_POST['prd_price'];
 			$prd_warranty = $_POST['prd_warranty'];
 			$prd_accessories = $_POST['prd_accessories'];
 			if ($_FILES['prd_image']['name'] == ""){
-				$prd_image = $row['prd_image'];
+				$prd_image = $data_image['prd_image'];
 			}else{
 				$prd_image = $_FILES['prd_image']['name'];
 				move_uploaded_file($_FILES['prd_image']['tmp_name'], '/opt/lampp/htdocs/mini_project/public/image/'.$prd_image);
@@ -42,7 +43,7 @@ class product extends Controller
 
 			$prd->Update($prd_name, $prd_price,$prd_warranty,$prd_accessories, $prd_image ,$prd_promotion,$cat_id,$prd_details,$id);
 
-			
+
 			header("location: ../../product");
 		}else{
 			$this->view("master_layout",[
@@ -56,7 +57,7 @@ class product extends Controller
 
 	}
 
-
+	// controller Thêm sản Phẩm 
 	function add(){
 		$cat = $this->model("MD_category");
 		$prd = $this->model("MD_product");
@@ -84,6 +85,7 @@ class product extends Controller
 		}
 	}
 
+	// controller delete sản phẩm
 	function delete($id){
 		$prd = $this->model("MD_product");
 		$prd->Delete($id);

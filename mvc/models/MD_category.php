@@ -5,6 +5,7 @@
 	class MD_category extends DB
 	{
 		
+		// Lấy tất cả dữ liệu của bảng category
 		public function getAllData(){
 			$sql = "SELECT * FROM category ORDER BY cat_id";
 			$this->execute($sql);
@@ -46,12 +47,41 @@
 			$sql = "UPDATE category SET cat_name = '$cat_name' WHERE cat_id = '$id'";
 
 			$result = false;
-			if(mysqli_query($this->conn,$sql)){
+			if($this->execute($sql)){
 				$result = true;
 			}
-			return json_encode($result);
+			return $result;
 			
 		}
+
+		public function Insert($cat_name){
+			$sql = "INSERT INTO category(cat_name) VALUES ('$cat_name')";
+			$result = false;
+			if($this->execute($sql)){
+				$result = true;
+			}
+			return $result;
+		}
+
+		public function checkInsert($cat_name){
+			$sql = "SELECT cat_name FROM category WHERE cat_name = '$cat_name'";
+			$this->execute($sql);
+			return $this->num_rows($sql);
+		}
+
+		public function Delete($id){
+			$sql = "SELECT * FROM product INNER JOIN category ON product.cat_id = category.cat_id WHERE category.cat_id = '$id'";
+			$this->execute($sql);
+			if ($this->num_rows($sql) == 0) {
+				$sql = "DELETE FROM category WHERE cat_id = $id";
+				$result = false;
+				if(mysqli_query($this->conn,$sql)){
+					$result = true;
+				}
+				return $result;
+			}
+		}
+
 		
 	}
 	?>

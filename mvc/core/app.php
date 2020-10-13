@@ -5,6 +5,7 @@ class App{
     protected $action="show";
     protected $params=[];
 
+    // 
     function __construct(){
  
         $arr = $this->UrlProcess();
@@ -27,13 +28,6 @@ class App{
             unset($arr[1]);
         }
 
-        // Params(
-        // if(isset($arr)){
-        //     $this->params = array_values($arr);
-        //     unset($arr[0],$arr[1]);
-        // }else{
-        //     $arr = [];
-        // }
         $this->params = $arr?array_values($arr):[];
 
         call_user_func_array([$this->controller,$this->action],$this->params);

@@ -56,8 +56,7 @@
                             <label>Danh mục</label>
                             <select name="cat_id" class="form-control">
                                 <?php  
-                                // $rows = mysqli_fetch_array($data["data_cat"]);
-                                while ($row_cat = mysqli_fetch_array($data["all_cat"])) {
+                                foreach($data["all_cat"] as $row_cat) {
 
                                     ?>
                                     <option value=<?php echo $row_cat['cat_id']; ?>><?php echo $row_cat['cat_name']; ?></option>

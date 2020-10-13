@@ -20,7 +20,7 @@
                             <div class="col-md-8">
                                 <!-- <div class="alert alert-danger">Email đã tồn tại, Mật khẩu không khớp !</div> -->
 
-                            <form role="form" method="post" action="./user/edit">
+                            <form role="form" method="post" action="./user/edit<?php echo $row['user_id']; ?>">
                                 <div class="form-group">
                                     <label>Họ & Tên</label>
                                     <input type="text" name="user_full" required class="form-control" value="<?php echo $row['user_full']; ?>" placeholder="">
@@ -50,7 +50,7 @@
                                     </select>
                                 </div>
                                 <button type="submit" name="sbm" class="btn btn-primary">Cập nhật</button>
-                                <button type="reset" class="btn btn-default">Làm mới</button>
+                                
                             </div>
                         </form>
                         </div>

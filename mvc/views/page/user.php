@@ -1,3 +1,14 @@
+<script type="text/javascript">
+    function mess_add(){
+        alert("Bạn không có quyền thêm user");
+    }
+    function mess_edit(){
+        alert("Bạn không có quyền sửa user");
+    }
+    function mess_del(){
+        alert("Bạn không có quyền Delete user");
+    }
+</script>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">
@@ -16,7 +27,7 @@
     </div>
     <!--/.row-->
     <div id="toolbar" class="btn-group">
-        <a href="./user/add" class="btn btn-success">
+        <a href="./user/add" onclick="<?php if(isset($data['result'])){ echo "mess_add()";} ?>" class="btn btn-success">
             <i class="glyphicon glyphicon-plus"></i> Thêm thành viên
         </a>
     </div>
@@ -57,8 +68,8 @@
                                         ?>
                                     </span></td>
                                     <td class="form-group">
-                                        <a href="./user/edit/<?php echo $value["user_id"]; ?>" class="btn btn-primary">edit</a>
-                                        <a href="./user/delete/<?php echo $value["user_id"]; ?>" class="btn btn-danger">Delete</i></a>
+                                        <a href="./user/edit/<?php echo $value["user_id"]; ?>" onclick="<?php if(isset($data['result_edit'])){ echo "mess_edit()";} ?>" class="btn btn-primary">edit</a>
+                                        <a href="./user/delete/<?php echo $value["user_id"]; ?>" onclick="<?php if(isset($data['result_del'])){ echo "mess_del()";} ?>" class="btn btn-danger">Delete</i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
