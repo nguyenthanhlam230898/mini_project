@@ -40,15 +40,21 @@ class product extends Controller
 			$prd_promotion = htmlentities($_POST['prd_promotion']);
 			$cat_id = $_POST['cat_id'];
 			$prd_details = $_POST['prd_details'];
-			$check = $prd->check($prd_name);
-			if ($check != "") {
+			$check = $prd->checkById($id);
+			$check_name = $prd->check($prd_name);
+			if ($check["prd_name"] === $prd_name) {
+				$prd->Update($prd_name, $prd_price,$prd_warranty,$prd_accessories, $prd_image ,$prd_promotion,$cat_id,$prd_details,$id);
+				header("location: ../../product");
+			}
+			if ($check_name != "") {
 				$this->view("master_layout",[
-				"page" => "edit_product",
-				"data" => $prd->getData($id),
-				"data_cat" => $cat->getData($id),
-				"all_cat" => $cat->getAllData($this->table_cat)
-
-			]);
+					"page" => "edit_product",
+					"data" => $prd->getData($id),
+					"data_cat" => $cat->getData($id),
+					"all_cat" => $cat->getAllData($this->table_cat),
+					"mess" => $check_name
+				]);
+				// print_r($check1);
 			}else{
 				$prd->Update($prd_name, $prd_price,$prd_warranty,$prd_accessories, $prd_image ,$prd_promotion,$cat_id,$prd_details,$id);
 				header("location: ../../product");

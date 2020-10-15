@@ -21,7 +21,7 @@
                         <?php $row = $data["data"]; ?>
                         <form role="form" method="post" action="./product/edit/<?php echo $row['prd_id']; ?>" enctype="multipart/form-data">
                             <?php 
-                            if (!empty($data['mess'])) {
+                            if (isset($data['mess'])) {
                                 ?>
                                 <div class="alert alert-danger">Sản phẩm đã tồn tại. Mời bạn nhập lại.</div>
                                 <?php

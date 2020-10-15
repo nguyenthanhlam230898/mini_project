@@ -81,6 +81,16 @@
 			return $kq;
 		}
 
+		public function checkById($id){
+			$sql = "SELECT prd_name FROM product WHERE prd_id = '$id'";
+			$query = $this->execute($sql);
+			// $kq = "";
+			// if (mysqli_num_rows($query)	> 0){
+			// 	$kq = "Sản phẩm đã tồn tại";
+			// }
+			return $kq = $this->Data();
+		}
+
 		//Delete sản phẩm
 		public function Delete($id){
 			$sql = "DELETE FROM product WHERE prd_id = $id";
