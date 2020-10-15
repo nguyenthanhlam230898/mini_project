@@ -32,7 +32,13 @@ class MD_user extends DB
 	}
 
 	public function checkUser($user_mail,$user_pass){
-		$sql = "SELECT user_level FROM user WHERE user_mail = '$user_mail' AND user_pass = '$user_pass'";
+		$sql = "SELECT user_mail, user_pass, user_level FROM user WHERE user_mail = '$user_mail' AND user_pass = '$user_pass'";
+		$this->execute($sql);
+		$data = $this->Data();
+		return $data;
+	}
+	public function checkUserById($id){
+		$sql = "SELECT user_mail, user_pass FROM user WHERE user_id = '$id'";
 		$this->execute($sql);
 		$data = $this->Data();
 		return $data;
@@ -46,18 +52,38 @@ class MD_user extends DB
 			// header("location: ../user");
 		// }
 	}
-	public function Update($user_full, $user_mail,$user_pass,$user_level, $id){
+	public function Update($user_full,$user_pass,$user_level, $id){
 		$sql = "UPDATE user SET user_full = '$user_full',
-								user_mail = '$user_mail',
+								-- user_mail = '$user_mail',
 								user_pass = '$user_pass',
 								user_level = '$user_level'
 							WHERE user_id = '$id'";
-		return $this->execute($sql);
+		$this->execute($sql);
 	}
 	public function Delete($id){
 		$sql = "DELETE FROM user WHERE user_id = '$id'";
 		$this->execute($sql);	
 		
+	}
+
+	public function check($user_mail){
+		$sql = "SELECT user_mail FROM user WHERE user_mail = '$user_mail'";
+		$query = $this->execute($sql);
+		$kq = NULL;
+			if (mysqli_num_rows($query)	> 0) {
+				$kq = "Email đã tồn tại";
+			}
+		return $kq;
+	}
+
+	public function check_mail($id){
+		$sql = "SELECT user_mail FROM user WHERE user_id <> '$id'";
+		$query = $this->execute($sql);
+		$kq = "";
+			if (mysqli_num_rows($query)	> 0) {
+				$kq = "Email đã tồn tại";
+			}
+		return $kq;
 	}
 
 }

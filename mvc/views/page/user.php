@@ -27,10 +27,25 @@
     </div>
     <!--/.row-->
     <div id="toolbar" class="btn-group">
-        <a href="./user/add" onclick="<?php if(isset($data['result'])){ echo "mess_add()";} ?>" class="btn btn-success">
-            <i class="glyphicon glyphicon-plus"></i> Thêm thành viên
-        </a>
+        <?php
+        if($data['check'] == 1){
+            ?>
+            <a href="./user/add" class="btn btn-success">
+                <i class="glyphicon glyphicon-plus"></i> Thêm thành viên
+            </a>
+            <?php
+        }
+
+        ?>
+        
     </div>
+    <?php
+    if (!empty($data['result'])) {
+        ?>
+            <div class="alert alert-danger">Bạn không thể xóa chính bạn</div>
+        <?php
+        }
+    ?>
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -43,7 +58,13 @@
                                 <th data-field="name" data-sortable="true">Họ & Tên</th>
                                 <th data-field="price" data-sortable="true">Email</th>
                                 <th>Quyền</th>
-                                <th>Hành động</th>
+                                <?php
+                                if($data['check'] == 1){
+                                    ?>
+                                    <th>Hành Động</th>
+                                    <?php
+                                }
+                                ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,31 +88,38 @@
                                         }
                                         ?>
                                     </span></td>
+                                    <?php
+                                    if($data['check'] == 1){
+                                    ?>
                                     <td class="form-group">
-                                        <a href="./user/edit/<?php echo $value["user_id"]; ?>" onclick="<?php if(isset($data['result_edit'])){ echo "mess_edit()";} ?>" class="btn btn-primary">edit</a>
-                                        <a href="./user/delete/<?php echo $value["user_id"]; ?>" onclick="<?php if(isset($data['result_del'])){ echo "mess_del()";} ?>" class="btn btn-danger">Delete</i></a>
+                                    <a href="./user/edit/<?php echo $value["user_id"]; ?>"  class="btn btn-primary">edit</a>
+                                    <a href="./user/delete/<?php echo $value["user_id"]; ?>" onclick="return confirm('Bạn có chắn chắn xóa ?')" class="btn btn-danger">Delete</i></a>
                                     </td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="panel-footer">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                            
-                        </ul>
-                    </nav>
-                </div>
+                                    <?php
+                                    }
+                                    ?>
+                                
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
-    <!--/.row-->
+</div>
+<!--/.row-->
 </div>
 <!--/.main-->
 

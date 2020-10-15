@@ -12,6 +12,8 @@
 
 	<script src="./public/js/lumino.glyphs.js" /></script>
 	<script src="./public/js/ckeditor.js" /></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="./public/js/main.js"></script>
 </head>
 
 <body>

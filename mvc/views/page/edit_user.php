@@ -18,35 +18,38 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="col-md-8">
-                                <!-- <div class="alert alert-danger">Email đã tồn tại, Mật khẩu không khớp !</div> -->
+                                <?php
+                                if (!empty($data['mess'])) {
+                                ?>
+                                <div class="alert alert-danger"> Mật khẩu không đúng!</div>
+                                <?php
+                                }
+                                ?>
+                                <!--  -->
 
-                            <form role="form" method="post" action="./user/edit<?php echo $row['user_id']; ?>">
+                            <form role="form" method="post">
                                 <div class="form-group">
                                     <label>Họ & Tên</label>
                                     <input type="text" name="user_full" required class="form-control" value="<?php echo $row['user_full']; ?>" placeholder="">
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label>Email</label>
                                     <input type="text" name="user_mail" required value="<?php echo $row['user_mail']; ?>" class="form-control">
-                                </div>                       
+                                </div>   -->                     
                                 <div class="form-group">
                                     <label>Mật khẩu</label>
                                     <input type="password" name="user_pass" value="<?php echo $row['user_pass']; ?>" required  class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Nhập lại mật khẩu</label>
-                                    <input type="password" name="user_re_pass"  required  class="form-control">
+                                    <input type="password" name="user_re_pass"    class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Quyền</label>
                                     <select name="user_level" class="form-control">
-                                        <?php 
-                                            if ($row['user_level' == 1]){ 
-                                                echo "<option value=1>Admin</option>";
-                                            }else{
-                                                echo "<option value=2 selected>Member</option>";
-                                            }
-                                        ?>
+                                        <option value=1>Admin</option>
+                                        <option value=2 selected>Member</option>
+                                        
                                     </select>
                                 </div>
                                 <button type="submit" name="sbm" class="btn btn-primary">Cập nhật</button>

@@ -66,7 +66,7 @@
 		public function checkInsert($cat_name){
 			$sql = "SELECT cat_name FROM category WHERE cat_name = '$cat_name'";
 			$this->execute($sql);
-			return $this->num_rows($sql);
+			return $this->num_rows();
 		}
 
 		public function Delete($id){

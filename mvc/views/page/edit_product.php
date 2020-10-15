@@ -20,11 +20,19 @@
                     <div class="col-md-6">
                         <?php $row = $data["data"]; ?>
                         <form role="form" method="post" action="./product/edit/<?php echo $row['prd_id']; ?>" enctype="multipart/form-data">
+                            <?php 
+                            if (!empty($data['mess'])) {
+                                ?>
+                                <div class="alert alert-danger">Sản phẩm đã tồn tại. Mời bạn nhập lại.</div>
+                                <?php
+                            }
+                            
+                            ?>
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
-                                <input required name="prd_name" class="form-control" placeholder="" value="<?php echo $row["prd_name"]; ?>"> 
+                                <input required name="prd_name" id="prd_name" class="form-control" placeholder="" value="<?php echo $row["prd_name"]; ?>"> 
                             </div>
-
+                            <div id="message" style="color: red;"></div>
                             <div class="form-group">
                                 <label>Giá sản phẩm</label>
                                 <input required name="prd_price" type="number" min="0" value="<?php echo $row["prd_price"]; ?>" class="form-control">
@@ -47,7 +55,7 @@
                             <div class="form-group">
                                 <label>Ảnh sản phẩm</label>
 
-                                <input name="prd_image" type="file"> 
+                                <input name="prd_image" value="<?php echo $row["prd_image"]; ?>" type="file"> 
                                 <br>
                                 <div>
                                     <img src="./public/image/<?php echo $row["prd_image"]; ?>" />
@@ -56,7 +64,7 @@
                             <div class="form-group">
                                 <label>Danh mục</label>
                                 <select name="cat_id" class="form-control">
-                                    
+
                                     <?php
                                     $rows = $data["data_cat"];
                                     foreach ($data['all_cat'] as $row_cat) 

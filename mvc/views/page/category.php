@@ -19,7 +19,7 @@
 	<div id="toolbar" class="btn-group">
 		<?php if(isset($data['result'])){
 			?>
-			<div class="alert alert-danger">Email đã tồn tại, Mật khẩu không khớp !</div>
+			<div class="alert alert-danger">Bạn Không thể xóa danh mục đang tồn tại sản phẩm</div>
 			<?php
 		} ?>
 		<a href="./category/add" class="btn btn-success">

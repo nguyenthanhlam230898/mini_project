@@ -27,9 +27,9 @@ class product extends Controller
 		
 		$data_image = $prd->getData($id);
 		if (isset($_POST['sbm'])) {
-			$prd_name = $_POST['prd_name'];
-			$prd_price = $_POST['prd_price'];
-			$prd_warranty = $_POST['prd_warranty'];
+			$prd_name = htmlentities($_POST['prd_name']);
+			$prd_price = htmlentities($_POST['prd_price']);
+			$prd_warranty = htmlentities($_POST['prd_warranty']);
 			$prd_accessories = $_POST['prd_accessories'];
 			if ($_FILES['prd_image']['name'] == ""){
 				$prd_image = $data_image['prd_image'];
@@ -37,14 +37,23 @@ class product extends Controller
 				$prd_image = $_FILES['prd_image']['name'];
 				move_uploaded_file($_FILES['prd_image']['tmp_name'], '/opt/lampp/htdocs/mini_project/public/image/'.$prd_image);
 			}
-			$prd_promotion = $_POST['prd_promotion'];
+			$prd_promotion = htmlentities($_POST['prd_promotion']);
 			$cat_id = $_POST['cat_id'];
 			$prd_details = $_POST['prd_details'];
+			$check = $prd->check($prd_name);
+			if ($check != "") {
+				$this->view("master_layout",[
+				"page" => "edit_product",
+				"data" => $prd->getData($id),
+				"data_cat" => $cat->getData($id),
+				"all_cat" => $cat->getAllData($this->table_cat)
 
-			$prd->Update($prd_name, $prd_price,$prd_warranty,$prd_accessories, $prd_image ,$prd_promotion,$cat_id,$prd_details,$id);
-
-
-			header("location: ../../product");
+			]);
+			}else{
+				$prd->Update($prd_name, $prd_price,$prd_warranty,$prd_accessories, $prd_image ,$prd_promotion,$cat_id,$prd_details,$id);
+				header("location: ../../product");
+			}
+			
 		}else{
 			$this->view("master_layout",[
 				"page" => "edit_product",
@@ -61,20 +70,38 @@ class product extends Controller
 	function add(){
 		$cat = $this->model("MD_category");
 		$prd = $this->model("MD_product");
-		if (isset($_POST['sbm'])) {
-			$prd_name = $_POST['prd_name'];
+		
+		if ((empty($_POST['prd_name']) || empty($_POST['prd_price']) || empty($_POST['prd_warranty']) || empty($_POST['prd_accessories'])|| empty($_FILES['prd_image']['name'])|| empty($_POST['prd_promotion'])|| empty($_POST['cat_id']))) {
+			$this->view("master_layout",[
+				"page" => "add_product", 
+				"all_cat" => $cat->getAllData($this->table_cat)
+			]);
+		}
+		if (isset($_POST['sbm'])){
+			$prd_name = htmlentities($_POST['prd_name']);
 			$prd_price = $_POST['prd_price'];
-			$prd_warranty = $_POST['prd_warranty'];
-			$prd_accessories = $_POST['prd_accessories'];
-			move_uploaded_file($_FILES['prd_image']['tmp_name'], '/opt/lampp/htdocs/mini_project/public/image/'.$_FILES['prd_image']['name']);
-			$prd_promotion = $_POST['prd_promotion'];
+			$prd_warranty = htmlentities($_POST['prd_warranty']);
+			$prd_accessories =htmlentities($_POST['prd_accessories']);
+			$prd_image = $_FILES['prd_image']['name'];
+			$prd_image_tmp_name = $_FILES['prd_image']['tmp_name'];
+			
+			$prd_promotion = htmlentities($_POST['prd_promotion']);
 			$cat_id = $_POST['cat_id'];
-			$prd_details = $_POST['prd_details'];
+			$prd_details = htmlentities($_POST['prd_details']);
+			$result = $prd->check($prd_name);
+			if($result != NULL ){
+				$this->view("master_layout",[
+					"page" => "add_product", 
+					"all_cat" => $cat->getAllData($this->table_cat),
+					"mess"=>$result
+				]);
+			}else{
+				$prd->Insert($prd_name, $prd_price,$prd_warranty,$prd_accessories, $prd_image ,$prd_promotion,$cat_id,$prd_details);
+				move_uploaded_file($prd_image_tmp_name, '/opt/lampp/htdocs/mini_project/public/image/'.$prd_image);
+				header("location: ../product");
+			}
 
-
-			$prd->Insert($prd_name, $prd_price,$prd_warranty,$prd_accessories, $prd_image ,$prd_promotion,$cat_id,$prd_details);
-
-			header("location: ../product");
+			
 
 
 		}else{

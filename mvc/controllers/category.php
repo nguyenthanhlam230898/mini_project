@@ -23,7 +23,7 @@
 			$cat = $this->model("MD_category");
 			
 			if(isset($_POST['sbm'])){
-				$cat_name = $_POST['cat_name'];
+				$cat_name = htmlentities($_POST['cat_name']);
 				$result = $cat->checkInsert($cat_name);
 				if ($result == 0) {
 					$cat->Insert($cat_name);

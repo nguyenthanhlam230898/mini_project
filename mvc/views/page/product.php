@@ -46,7 +46,7 @@
                                 <td ><?php echo $row["prd_id"]; ?></td>
                                 <td ><?php echo $row["prd_name"]; ?></td>
                                 <td ><?php echo $row["prd_price"]; ?></td>
-                                <td style="text-align: center"><img width="130" height="180" src="<?php if(isset($arr[2])){echo "../..";}else{echo ".";} ?>/public/image/<?php echo $row["prd_image"]; ?>" /></td>
+                                <td style="text-align: center"><img width="130" height="180" src="./public/image/<?php echo $row["prd_image"]; ?>" /></td>
                                 <!-- <td><span class="label label-success"></span></td> -->
                                 <td><?php echo $row['cat_name']; ?></td>
                                 <td class="form-group">

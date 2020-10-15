@@ -70,7 +70,17 @@
 			
 			return $this->execute($sql);
 		}
-		
+		// check insert 
+		public function check($prd_name){
+			$sql = "SELECT prd_name FROM product WHERE prd_name = '$prd_name'";
+			$query = $this->execute($sql);
+			$kq = "";
+			if (mysqli_num_rows($query)	> 0){
+				$kq = "Sản phẩm đã tồn tại";
+			}
+			return $kq;
+		}
+
 		//Delete sản phẩm
 		public function Delete($id){
 			$sql = "DELETE FROM product WHERE prd_id = $id";

@@ -1,4 +1,8 @@
-
+<script type="text/javascript">
+    function mess(){
+        alert("Sản phẩm đã tồn tại");
+    }
+</script>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
   <div class="row">
      <ol class="breadcrumb">
@@ -19,10 +23,19 @@
             <div class="panel-body">
                 <div class="col-md-6">
                     <form role="form" action="./product/add" method="post" enctype="multipart/form-data">
+                        <?php 
+                            if (isset($data['mess'])) {
+                        ?>
+                            <div class="alert alert-danger">Sản phẩm đã tồn tại. Mời bạn nhập lại.</div>
+                        <?php
+                            }
+                         ?>
+                        
                         <div class="form-group">
                             <label>Tên sản phẩm</label>
-                            <input required name="prd_name" class="form-control" placeholder="">
+                            <input required name="prd_name" id="prd_name" class="form-control" placeholder="">
                         </div>
+                        <div id="message" style="color: red;" ></div>
 
                         <div class="form-group">
                             <label>Giá sản phẩm</label>
@@ -72,7 +85,7 @@
                             <label>Mô tả sản phẩm</label>
                             <textarea required name="prd_details" class="form-control" rows="3"></textarea>
                         </div>
-                        <button name="sbm" type="submit" class="btn btn-success">Thêm mới</button>
+                        <button name="sbm"  type="submit" class="btn btn-success">Thêm mới</button>
 
                     </div>
                 </form>
